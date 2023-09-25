@@ -10,6 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^3.1.2"
+    "astro": "^3.1.2",
+    "lil-gui": "0.18.2"
   }
 }
