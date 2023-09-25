@@ -1,5 +1,7 @@
 # Astro + lil-gui => build error
 
+![site dev mode with lil-gui](./assets/site.png)
+
 ## Steps to repro
 
 1. install deps: `pnpm i`;
@@ -16,3 +18,18 @@
        at ModuleJob._instantiate (node:internal/modules/esm/module_job:124:21)
        at async ModuleJob.run (node:internal/modules/esm/module_job:190:5)
    ```
+
+## Workaround
+
+1. open `lil-gui` package.json (`node_modules/lil-gui/package.json`);
+1. add the following:
+   ```json
+   "exports":{
+       ".":{
+       "import": "./dist/lil-gui.esm.js",
+       "require": "./dist/lil-gui.umd.js"
+       }
+   },
+   ```
+1. run build again;
+1. now everything will work
