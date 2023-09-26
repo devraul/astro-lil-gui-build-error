@@ -19,7 +19,7 @@
        at async ModuleJob.run (node:internal/modules/esm/module_job:190:5)
    ```
 
-## Workaround
+## Workaround 1
 
 1. open `lil-gui` package.json (`node_modules/lil-gui/package.json`);
 1. add the following:
@@ -33,3 +33,26 @@
    ```
 1. run build again;
 1. now everything will work
+
+## Workaround 2
+
+Based on [this comment](https://github.com/vitejs/vite/issues/14332#issuecomment-1715987090), I've realized that's another workaround.
+
+1. open `astro.config.mjs` file;
+1. define `vite.ssr.noExternal`;
+1. add the library to the array:
+   ```js
+   export default defineConfig({
+     vite: {
+       ssr: {
+         noExternal: ["lil-gui"],
+       },
+     },
+   });
+   ```
+
+The error will go away.
+
+### Reference
+
+- [https://vite-plugin-ssr.com/broken-npm-package](https://vite-plugin-ssr.com/broken-npm-package)
